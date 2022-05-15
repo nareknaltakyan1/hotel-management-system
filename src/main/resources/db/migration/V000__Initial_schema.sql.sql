@@ -1,45 +1,44 @@
-create table contact
-(
-    id bigserial not null,
-    name varchar(255) not null,
-    phone varchar(255) not null,
-    email varchar(255) not null,
-    address1 varchar(255) not null,
-    address2 varchar(255) not null,
-    address3 varchar(255) not null,
-    postalCode varchar(255) not null,
-    note varchar(255) not null,
-    primary key(id)
-);
-
 create table room(
     id bigserial not null,
     type varchar(255) not null,
-    registration_date datetime,
-    update_date  datetime,
-    delete_date  datetime,
+    created timestamp not null,
+    updated timestamp not null,
+    deleted timestamp,
     primary key(id)
-)
+);
+
+-- add index on type
 
 create table guest(
     id bigserial not null,
-    passport varchar(255) not null,
+    passport varchar(255) not null UNIQUE,
     name varchar(255) not null,
-    phone varchar(255) not null,
+    phone varchar(255) not null UNIQUE ,
     email varchar(255),
-    registration_date datetime,
-    update_date  datetime,
-    delete_date  datetime,
+    created timestamp not null,
+    updated timestamp not null,
+    deleted timestamp,
     primary key(id)
-)
+);
+
+-- add index on email
+-- add index on name
 
 create table employee(
     id bigserial not null,
     role varchar(255) not null,
-    registration_date datetime,
-    update_date  datetime,
-    delete_date  datetime,
+    passport varchar(255) not null UNIQUE,
+    name varchar(255) not null,
+    phone varchar(255) not null UNIQUE ,
+    email varchar(255),
+    created timestamp not null,
+    updated timestamp not null,
+    deleted timestamp,
     primary key(id)
-)
+);
 
-create index idx_contact_name on contact (name);
+-- add index on email
+-- add index on name
+-- add index on role
+
+-- create index idx_contact_name on contact (name);

@@ -17,17 +17,9 @@ import java.time.LocalDateTime;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Getter
 @Setter
-public class Employee {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Employee extends TimeStampedDomainEntity {
 
     private String role;
 
-    private LocalDateTime registrationDate;
 
-    private LocalDateTime update_date;
-
-    private LocalDateTime delete_date;
 }
