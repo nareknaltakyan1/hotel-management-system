@@ -7,7 +7,7 @@ create table room(
     primary key(id)
 );
 
--- add index on type
+create index idx_room_type on room (type);
 
 create table guest(
     id bigserial not null,
@@ -21,8 +21,8 @@ create table guest(
     primary key(id)
 );
 
--- add index on email
--- add index on name
+create index idx_guest_email on guest (email);
+create index idx_guest_name on guest (name);
 
 create table employee(
     id bigserial not null,
@@ -37,8 +37,6 @@ create table employee(
     primary key(id)
 );
 
--- add index on email
--- add index on name
--- add index on role
-
--- create index idx_contact_name on contact (name);
+create index idx_employee_email on employee (email);
+create index idx_employee_name on employee (name);
+create index idx_employee_role on employee (role);
