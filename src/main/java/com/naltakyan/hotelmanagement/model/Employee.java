@@ -20,18 +20,17 @@ import org.springframework.validation.annotation.Validated;
 public class Employee extends TimeStampedDomainEntity {
 
     @Enumerated(EnumType.STRING)
-    @NotBlank
     private EmployeeRole role;
 
     private String passport;
 
-    @Column
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column
+    @Column(name = "profile_image_url")
     private String profileImageUrl;
 
     private String phone;
