@@ -8,9 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.validation.annotation.Validated;
 
-@Validated
 @Entity
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Getter
@@ -25,5 +23,11 @@ public class Room {
   @NotBlank
   private RoomType type;
 
-  @NotNull private LocalDateTime registrationDate;
+  @Column(name = "bed_numbers")
+  private String bedNumbers;
+
+  private String area;
+
+  @Column(name = "price_per_day")
+  private String pricePerDay;
 }
