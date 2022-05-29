@@ -5,10 +5,10 @@ create table guest
     last_name  varchar(255),
     passport   varchar(255) UNIQUE   NOT NULL,
     phone      varchar(255) UNIQUE   NOT NULL,
-    email      varchar(255) UNIQUE   NOT NULL,
+    email      varchar(255) UNIQUE,
     created    timestamp             NOT NULL,
     deleted    timestamp,
-    updated    timestamp
+    updated    timestamp             NOT NULL
 );
 
 
