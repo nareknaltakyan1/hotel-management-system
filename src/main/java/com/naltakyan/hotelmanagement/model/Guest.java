@@ -1,16 +1,16 @@
 package com.naltakyan.hotelmanagement.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.validation.annotation.Validated;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDateTime;
 
 @Validated
 @Entity
@@ -19,21 +19,16 @@ import java.time.LocalDateTime;
 @Setter
 public class Guest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @NotNull
+  private Long id;
 
-    private String passport;
+  @NotBlank private String passport;
 
-    private String name;
+  @NotBlank private String name;
 
-    private String phone;
+  @NotBlank private String phone;
 
-    private String email;
-
-    private LocalDateTime registrationDate;
-
-    private LocalDateTime update_date;
-
-    private LocalDateTime delete_date;
+  @NotBlank private String email;
 }

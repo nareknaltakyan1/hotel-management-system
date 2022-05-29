@@ -1,16 +1,14 @@
 package com.naltakyan.hotelmanagement.model;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.validation.annotation.Validated;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDateTime;
 
 @Validated
 @Entity
@@ -19,7 +17,15 @@ import java.time.LocalDateTime;
 @Setter
 public class Employee extends TimeStampedDomainEntity {
 
-    private String role;
+  @Enumerated(EnumType.STRING)
+  @NotBlank
+  private EmployeeRole role;
 
+  @NotBlank private String passport;
 
+  @NotBlank private String name;
+
+  @NotBlank private String phone;
+
+  @NotBlank private String email;
 }

@@ -1,13 +1,14 @@
 package com.naltakyan.hotelmanagement.model;
 
+import java.time.LocalDateTime;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.validation.annotation.Validated;
-
-import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Validated
 @Entity
@@ -16,15 +17,13 @@ import java.time.LocalDateTime;
 @Setter
 public class Room {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    private String type;
+  @Enumerated(EnumType.STRING)
+  @NotBlank
+  private RoomType type;
 
-    private LocalDateTime registrationDate;
-
-    private LocalDateTime update_date;
-
-    private LocalDateTime delete_date;
+  @NotNull private LocalDateTime registrationDate;
 }

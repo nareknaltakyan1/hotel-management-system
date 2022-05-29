@@ -1,4 +1,6 @@
 package com.naltakyan.hotelmanagement.model;
 
-public class Role {
+public enum RoomType {
+  STANDARD,
+  VIP
 }
