@@ -11,15 +11,11 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "additional_service")
-public class AdditionalService {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class AdditionalService extends TimeStampedDomainEntity {
 
     @Column(nullable = false,length = 255)
     private String name;
 
     @Column(nullable = false)
-    private double price;
+    private Double price;
 }
