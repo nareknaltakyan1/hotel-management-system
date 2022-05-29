@@ -10,7 +10,7 @@ CREATE TABLE employee
     profile_image_url varchar(255),
     created           timestamp NOT NULL,
     deleted           timestamp,
-    updated           timestamp NOT NULL,
+    updated           timestamp NOT NULL
 );
 
 create index idx_worker_passport on worker (passport);

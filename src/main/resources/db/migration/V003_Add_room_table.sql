@@ -5,4 +5,7 @@ CREATE TABLE room
     area double precision NOT NULL,
     bed_numbers int NOT NULL,
     price_per_day double precision NOT NULL,
+    created timestamp NOT NULL,
+    deleted timestamp,
+    updated timestamp NOT NULL
 );
