@@ -1,4 +1,4 @@
-CREATE TABLE worker
+CREATE TABLE employee
 (
     id                bigserial PRIMARY KEY NOT NULL,
     type              varchar(255) NOT NULL;
