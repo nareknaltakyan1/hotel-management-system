@@ -23,7 +23,11 @@ public class Employee extends TimeStampedDomainEntity {
 
   @NotBlank private String passport;
 
-  @NotBlank private String name;
+  @NotBlank private String firstName;
+
+  @NotBlank private String lastName;
+
+  @NotBlank private String profileImageUrl;
 
   @NotBlank private String phone;
 
