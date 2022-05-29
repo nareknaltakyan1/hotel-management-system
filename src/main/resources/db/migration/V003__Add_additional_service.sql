@@ -5,7 +5,7 @@ create table additional_service
     price   double PRECISION      NOT NULL,
     created timestamp             NOT NULL,
     deleted timestamp,
-    updated timestamp
+    updated timestamp             NOT NULL
 );
 
 CREATE INDEX idx_additional_service_name ON additional_service (name);
