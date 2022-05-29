@@ -6,11 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.validation.annotation.Validated;
+
+import java.time.Instant;
 
 @Validated
 @Entity
@@ -19,16 +22,31 @@ import org.springframework.validation.annotation.Validated;
 @Setter
 public class Guest {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @NotNull
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
+    private Long id;
 
-  @NotBlank private String passport;
+    @NotNull
+    private String firstName;
 
-  @NotBlank private String name;
+    private String lastName;
 
-  @NotBlank private String phone;
+    @NotNull
+    private String passport;
 
-  @NotBlank private String email;
+    @NotNull
+    private String phone;
+
+    private String email;
+
+    @NotNull
+    private Instant created;
+
+    @NotNull
+    private Instant updated;
+
+    private Instant deleted;
+
+
 }
