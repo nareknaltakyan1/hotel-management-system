@@ -1,9 +1,6 @@
 package com.naltakyan.hotelmanagement.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -20,33 +17,21 @@ import java.time.Instant;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Getter
 @Setter
-public class Guest {
+public class Guest extends  TimeStampedDomainEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
-    private Long id;
 
-    @NotNull
+    @Column(nullable = false,name = "first_name")
     private String firstName;
 
+    @Column(name = "last_name")
     private String lastName;
 
-    @NotNull
+    @Column(nullable = false)
     private String passport;
 
-    @NotNull
+    @Column(nullable = false)
     private String phone;
 
     private String email;
-
-    @NotNull
-    private Instant created;
-
-    @NotNull
-    private Instant updated;
-
-    private Instant deleted;
-
 
 }
