@@ -1,18 +1,15 @@
 package com.naltakyan.hotelmanagement.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.validation.annotation.Validated;
 
-import java.time.Instant;
 
-@Validated
+
+
 @Entity
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Getter
