@@ -35,7 +35,7 @@ public class RoomService {
     }
 
     public Room save(Room room) {
-        notNull(room, "Employee should not be null");
+        notNull(room, "Room should not be null");
         notNull(room.getType(), "Room Type should not be null");
         notNull(room.getBedNumbers(), "Room BedNumber should not be null");
         notNull(room.getPricePerDay(), "Room PricePerDay should not be null");
