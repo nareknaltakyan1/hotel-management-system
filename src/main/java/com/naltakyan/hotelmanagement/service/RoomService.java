@@ -36,9 +36,9 @@ public class RoomService {
 
     public Room save(Room room) {
         notNull(room, "Employee should not be null");
-        notNull(room.getType(), "room Type should not be null");
-        notNull(room.getBedNumbers(), "room BedNumber should not be null");
-        notNull(room.getPricePerDay(), "room PricePerDay should not be null");
+        notNull(room.getType(), "Room Type should not be null");
+        notNull(room.getBedNumbers(), "Room BedNumber should not be null");
+        notNull(room.getPricePerDay(), "Room PricePerDay should not be null");
         if (room.getId() != null && existsById(room.getId())) {
             throw new EntityExistsException("Room with id: " + room.getId() + " already exists");
         }
@@ -46,10 +46,10 @@ public class RoomService {
     }
 
     public void update(Room room) {
-        notNull(room, "Employee should not be null");
-        notNull(room.getType(), "room Type should not be null");
-        notNull(room.getBedNumbers(), "room BedNumber should not be null");
-        notNull(room.getPricePerDay(), "room PricePerDay should not be null");
+        notNull(room, "Room should not be null");
+        notNull(room.getType(), "Room Type should not be null");
+        notNull(room.getBedNumbers(), "Room BedNumber should not be null");
+        notNull(room.getPricePerDay(), "Room PricePerDay should not be null");
         if (!existsById(room.getId())) {
             throw new EntityNotFoundException("Room find with id: " + room.getId());
         }
