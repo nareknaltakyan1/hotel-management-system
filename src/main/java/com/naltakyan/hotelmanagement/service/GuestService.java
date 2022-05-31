@@ -38,6 +38,9 @@ public class GuestService {
     public Guest save(Guest guest){
         notNull(guest,"Guest should be null");
         notNull(guest.getFirstName(),"Guest Name should be null");
+        notNull(guest.getPassport(),"Guest Passport should be null");
+        notNull(guest.getPhone(),"Guest Phone should be null");
+        notNull(guest.getEmail(),"Guest Email should be null");
         if(guest.getId()!= null && existsById(guest.getId())){
             throw new EntityExistsException("Guest with id: " + guest.getId() + " already exists");
         }
@@ -48,7 +51,9 @@ public class GuestService {
     public void update(Guest guest) {
         notNull(guest, "Guest should not be null");
         notNull(guest.getFirstName(), "Guest Name should not be null");
-        if (!existsById(guest.getId())) {
+        notNull(guest.getPassport(),"Guest Passport should be null");
+        notNull(guest.getPhone(),"Guest Phone should be null");
+        notNull(guest.getEmail(),"Guest Email should be null");        if (!existsById(guest.getId())) {
             throw new EntityNotFoundException("Cannot find Contact with id: " + guest.getId());
         }
         guestRepository.save(guest);
