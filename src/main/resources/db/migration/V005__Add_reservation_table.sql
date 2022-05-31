@@ -11,6 +11,6 @@ CREATE TABLE reservation
     created timestamp NOT NULL,
     deleted timestamp,
     updated timestamp NOT NULL,
-    CONSTRAINT Guest FOREIGN KEY (guest_id) REFERENCES guest (id),
-    CONSTRAINT Room FOREIGN KEY (room_id) REFERENCES room (id)
+    CONSTRAINT fk_reservation_guest FOREIGN KEY (guest_id) REFERENCES guest (id),
+    CONSTRAINT fk_reservation_romm  FOREIGN KEY (room_id) REFERENCES room (id)
 );
