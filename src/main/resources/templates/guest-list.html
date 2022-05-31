@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Guest List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Guest List</h1>
+
+<div>
+    <nobr>
+        <a th:href="@{/guests/add}">Add Guest</a> |
+        <a th:href="@{/}">Back to Index</a>
+    </nobr>
+</div>
+<br/><br/>
+<div>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Passport</th>
+            <th>Edit</th>
+        </tr>
+        <tr th:each ="guest : ${guests}">
+            <td><a th:href="@{/guests/{guestId}(guestId=${guest.id})}" th:utext="${guest.id}">...</a></td>
+            <td><a th:href="@{/guests/{guestId}(guestId=${guest.id})}" th:utext="${guest.firstName}">...</a></td>
+            <td><a th:href="@{/guests/{guestId}(guestId=${guest.id})}" th:utext="${guest.lastName}">...</a></td>
+            <td th:utext="${guest.phone}">...</td>
+            <td th:utext="${guest.email}">...</td>
+            <td th:utext="${guest.passport}">...</td>
+            <td><a th:href="@{/guests/{guestId}/edit(guestId=${guest.id})}">Edit</a></td>
+        </tr>
+    </table>
+</div>
+<br/><br/>
+<div>
+    <nobr>
+        <span th:if="${hasPrev}"><a th:href="@{/guests?page={prev}(prev=${prev})}">Prev</a>&nbsp;&nbsp;&nbsp;</span>
+        <span th:if="${hasNext}"><a th:href="@{/guests?page={next}(next=${next})}">Next</a></span>
+    </nobr>
+</div>
+</body>
+</html>

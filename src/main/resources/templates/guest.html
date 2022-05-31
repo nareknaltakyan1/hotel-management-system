@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>View Guest</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>View Guest</h1>
+<a th:href="@{/guests}">Back to Guest List</a>
+<br/><br/>
+<div th:if="${guest}">
+    <table border="0">
+        <tr>
+            <td>ID</td>
+            <td>:</td>
+            <td th:utext="${guest.id}">...</td>
+        </tr>
+        <tr>
+            <td>FirstName</td>
+            <td>:</td>
+            <td th:utext="${guest.firstName}">...</td>
+        </tr>
+        <tr>
+            <td>LastName</td>
+            <td>:</td>
+            <td th:utext="${guest.lastName}">...</td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>:</td>
+            <td th:utext="${guest.phone}">...</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>:</td>
+            <td th:utext="${guest.email}">...</td>
+        </tr>
+        <tr>
+            <td>Passport</td>
+            <td>:</td>
+            <td th:utext="${guest.passport}">...</td>
+        </tr>
+
+    </table>
+    <br/><br/>
+    <div th:if="not ${allowDelete}">
+        <a th:href="@{/guests/{guestId}/edit(guestId=${guest.id})}">Edit</a> |
+        <a th:href="@{/guests/{guestId}/delete(guestId=${guest.id})}">Delete</a>
+    </div>
+    <form th:if="${allowDelete}" th:action="@{/guests/{guestId}/delete(guestId=${guest.id})}" method="POST">
+        Delete this contact? <input type="submit" th:value="Yes" />
+    </form>
+</div>
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+</body>
+</html>

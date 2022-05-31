@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="${add} ? 'Create a Employee' : 'Edit a Employee'" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1 th:text="${add} ? 'Create a Employee:' : 'Edit a Employee:'" />
+<a th:href="@{/employees}">Back to Employee List</a>
+<br/><br/>
+<form th:action="${add} ? @{/employees/add} : @{/employees/{employeeId}/edit(employeeId=${employee.id})}"
+      th:object="${employee}" method="POST">
+    <table border="0">
+        <tr th:if="${employee.id}">
+            <td>ID</td>
+            <td>:</td>
+            <td th:utext="${employee.id}">...</td>
+        </tr>
+        <tr>
+            <td>Role</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{role}" /></td>
+        </tr>
+        <tr>
+            <td>Passport</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{passport}" /></td>
+        </tr>
+        <tr>
+            <td>FirstName</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{firstName}" /></td>
+        </tr>
+        <tr>
+            <td>LastName</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{lastName}" size="50" /></td>
+        </tr>
+        <tr>
+            <td>ProfileImageUrl</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{profileImageUrl}" size="50" /></td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{phone}" size="50" /></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{email}" /></td>
+        </tr>
+    </table>
+    <input type="submit" th:value="${add} ? 'Create' : 'Update'" />
+</form>
+
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+</body>
+</html>
