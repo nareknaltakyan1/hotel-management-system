@@ -29,10 +29,10 @@ public class GuestController {
         this.guestService = guestService;
     }
 
-    @GetMapping(value = {"/", "/index"})
+    @GetMapping(value = {"/", "/guest-home"})
     public String index(Model model) {
         model.addAttribute("title", title);
-        return "index";
+        return "guest-home";
     }
 
     @GetMapping(value = "/guests")
