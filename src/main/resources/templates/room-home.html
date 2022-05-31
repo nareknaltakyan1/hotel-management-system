@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>View Contact</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>View Room</h1>
+<a th:href="@{/rooms}">Back to Room List</a>
+<br/><br/>
+<div th:if="${room}">
+    <table border="0">
+        <tr>
+            <td>ID</td>
+            <td>:</td>
+            <td th:utext="${room.id}">...</td>
+        </tr>
+        <tr>
+            <td>Type</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{type}" /></td>
+        </tr>
+        <tr>
+            <td>BedNumber</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{bedNumbers}" /></td>
+        </tr>
+        <tr>
+            <td>Area</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{area}" /></td>
+        </tr>
+        <tr>
+            <td>PricePerDay</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{pricePerDay}" size="50" /></td>
+        </tr>
+        <tr>
+            <td>Reservations</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{reservations}" /></td>
+        </tr>
+    </table>
+    <br/><br/>
+    <div th:if="not ${allowDelete}">
+        <a th:href="@{/rooms/{roomId}/edit(roomId=${room.id})}">Edit</a> |
+        <a th:href="@{/rooms/{roomId}/delete(roomId=${room.id})}">Delete</a>
+    </div>
+    <form th:if="${allowDelete}" th:action="@{/rooms/{roomId}/delete(roomId=${room.id})}" method="POST">
+        Delete this room? <input type="submit" th:value="Yes" />
+    </form>
+</div>
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+</body>
+</html>
