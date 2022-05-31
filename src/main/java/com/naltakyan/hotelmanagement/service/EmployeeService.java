@@ -22,14 +22,14 @@ public class EmployeeService {
   }
 
   public Employee findById(Long id) {
-    Employee employee = employeeRepository.findById(id).orElse(null);
+    Employee employee = employeeRepository.findByIdAndDeletedIsNull(id).orElse(null);
     if (employee == null) {
-      throw new EntityNotFoundException("Cannot find Contact with id: " + id);
+      throw new EntityNotFoundException("Cannot find Employee with id: " + id);
     } else return employee;
   }
 
   public List<Employee> findAll(final Pageable pageable) {
-    return employeeRepository.findAll(pageable).getContent();
+    return employeeRepository.getEmployeesByDeletedIsNull(pageable).getContent();
   }
 
   public Employee save(Employee employee) {
@@ -50,14 +50,14 @@ public class EmployeeService {
     notNull(employee.getFirstName(), "employee FirstName should not be null");
     notNull(employee.getLastName(), "employee LastName should not be null");
     if (!existsById(employee.getId())) {
-      throw new EntityNotFoundException("Employee find Contact with id: " + employee.getId());
+      throw new EntityNotFoundException("Cannot find Employee with id: " + employee.getId());
     }
     employeeRepository.save(employee);
   }
 
   public void deleteById(Long id) {
     if (!existsById(id)) {
-      throw new EntityNotFoundException("Employee find contact with id: " + id);
+      throw new EntityNotFoundException("Cannot find Employee with id: " + id);
     }
     employeeRepository.deleteById(id);
   }

@@ -27,10 +27,10 @@ public class ContactController {
     this.contactService = contactService;
   }
 
-  @GetMapping(value = {"/", "/index"})
+  @GetMapping(value = "/contact-home")
   public String index(Model model) {
     model.addAttribute("title", title);
-    return "index";
+    return "contact-home";
   }
 
   @GetMapping(value = "/contacts")
