@@ -64,7 +64,7 @@ public class GuestService {
         guestRepository.save(guest);
     }
 
-
+    @Transactional
     public void deleteById(Long id) {
         var guest = findById(id);
         guest.setDeleted(LocalDateTime.now());
