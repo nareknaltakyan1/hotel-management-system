@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="${add} ? 'Create a Room' : 'Edit a Room'" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1 th:text="${add} ? 'Create a Room:' : 'Edit a Room:'" />
+<a th:href="@{/rooms}">Back to Room List</a>
+<br/><br/>
+<form th:action="${add} ? @{/rooms/add} : @{/rooms/{roomId}/edit(roomId=${room.id})}"
+      th:object="${room}" method="POST">
+    <table border="0">
+        <tr th:if="${room.id}">
+            <td>ID</td>
+            <td>:</td>
+            <td th:utext="${room.id}">...</td>
+        </tr>
+        <tr>
+            <td>Type</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{type}" /></td>
+        </tr>
+        <tr>
+            <td>BedNumber</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{bedNumbers}" /></td>
+        </tr>
+        <tr>
+            <td>Area</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{area}" /></td>
+        </tr>
+        <tr>
+            <td>PricePerDay</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{pricePerDay}" size="50" /></td>
+        </tr>
+        <tr>
+            <td>Reservations</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{reservations}" /></td>
+        </tr>
+    </table>
+    <input type="submit" th:value="${add} ? 'Create' : 'Update'" />
+</form>
+
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+</body>
+</html>
