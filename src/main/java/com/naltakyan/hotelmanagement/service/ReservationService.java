@@ -24,7 +24,7 @@ public class ReservationService {
   public Reservation findById(Long id) {
     Reservation reservation = reservationRepository.findById(id).orElse(null);
     if (reservation == null) {
-      throw new EntityNotFoundException("Cannot find Contact with id: " + id);
+      throw new EntityNotFoundException("Cannot find Reservation with id: " + id);
     } else return reservation;
   }
 
@@ -39,7 +39,7 @@ public class ReservationService {
     notNull(reservation.getFromDate(), "employee FromDate should not be null");
     if (reservation.getId() != null && existsById(reservation.getId())) {
       throw new EntityExistsException(
-          "Contact with id: " + reservation.getId() + " already exists");
+          "Reservation with id: " + reservation.getId() + " already exists");
     }
     return reservationRepository.save(reservation);
   }
@@ -50,14 +50,14 @@ public class ReservationService {
     notNull(reservation.getToDate(), "employee ToDate should not be null");
     notNull(reservation.getFromDate(), "employee FromDate should not be null");
     if (!existsById(reservation.getId())) {
-      throw new EntityNotFoundException("Cannot find Contact with id: " + reservation.getId());
+      throw new EntityNotFoundException("Cannot find Reservation with id: " + reservation.getId());
     }
     reservationRepository.save(reservation);
   }
 
   public void deleteById(Long id) {
     if (!existsById(id)) {
-      throw new EntityNotFoundException("Cannot find contact with id: " + id);
+      throw new EntityNotFoundException("Cannot find Reservation with id: " + id);
     }
     reservationRepository.deleteById(id);
   }

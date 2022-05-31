@@ -10,5 +10,4 @@ CREATE TABLE room
     updated timestamp NOT NULL
 );
 
-
--- // TODO add indexes
+CREATE INDEX idx_room_price_per_day ON room (price_per_day);

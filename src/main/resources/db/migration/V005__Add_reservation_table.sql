@@ -12,6 +12,9 @@ CREATE TABLE reservation
     deleted timestamp,
     updated timestamp NOT NULL,
     CONSTRAINT fk_reservation_guest FOREIGN KEY (guest_id) REFERENCES guest (id),
-    CONSTRAINT fk_reservation_romm  FOREIGN KEY (room_id) REFERENCES room (id)
--- TODO fix name
+    CONSTRAINT fk_reservation_room  FOREIGN KEY (room_id) REFERENCES room (id)
 );
+
+CREATE INDEX idx_reservation_from_date ON reservation (from_date);
+CREATE INDEX idx_reservation_to_date ON reservation (to_date);
+CREATE INDEX idx_reservation_status ON reservation (status);
