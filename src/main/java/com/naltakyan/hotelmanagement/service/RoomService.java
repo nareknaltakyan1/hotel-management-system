@@ -1,5 +1,6 @@
 package com.naltakyan.hotelmanagement.service;
 
+import com.naltakyan.hotelmanagement.model.Guest;
 import com.naltakyan.hotelmanagement.model.Room;
 import com.naltakyan.hotelmanagement.repository.RoomRepository;
 import lombok.AllArgsConstructor;
@@ -25,14 +26,15 @@ public class RoomService {
     }
 
     public Room findById(Long id) {
-        Room room = roomRepository.findById(id).orElse(null);
+        Room room = roomRepository.findByIdAndDeletedIsNull(id).orElse(null);
         if (room == null) {
-            throw new EntityNotFoundException("Cannot find Room  with id: " + id);
-        } else return room;
+            throw new EntityNotFoundException("Cannot find Guest with id: " + id);
+        }
+        return room;
     }
 
     public List<Room> findAll(final Pageable pageable) {
-        return roomRepository.findAll(pageable).getContent();
+        return roomRepository.getRoomsByDeletedIsNull(pageable).getContent();
     }
 
     @Transactional

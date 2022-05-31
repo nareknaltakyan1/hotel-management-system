@@ -14,5 +14,5 @@ import java.util.Optional;
 public interface RoomRepository extends JpaRepository<Room, Long> {
     Optional<Room> findByIdAndDeletedIsNull(Long id);
 
-    Page<Room> getRoomServicesByDeletedIsNull(Pageable pageable);
+    Page<Room> getRoomsByDeletedIsNull(Pageable pageable);
 }
