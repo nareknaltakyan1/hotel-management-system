@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="${add} ? 'Create a Guest' : 'Edit a Guest'" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1 th:text="${add} ? 'Create a Guest:' : 'Edit a Guest:'" />
+<a th:href="@{/guests}">Back to Guest List</a>
+<br/><br/>
+<form th:action="${add} ? @{/guests/add} : @{/guests/{guestId}/edit(guestId=${guest.id})}"
+      th:object="${guest}" method="POST">
+    <table border="0">
+        <tr th:if="${guest.id}">
+            <td>ID</td>
+            <td>:</td>
+            <td th:utext="${guest.id}">...</td>
+        </tr>
+        <tr>
+            <td>FirstName</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{firstName}" /></td>
+        </tr>
+        <tr>
+            <td>LastName</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{lastName}" /></td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{phone}" /></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{email}" /></td>
+        </tr>
+        <tr>
+            <td>Passport</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{passport}" /></td>
+        </tr>
+    </table>
+    <input type="submit" th:value="${add} ? 'Create' : 'Update'" />
+</form>
+
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+</body>
+</html>
