@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class Reservation extends TimeStampedDomainEntity{
 
     @Enumerated(EnumType.STRING)
-    private ReservationStatus type;
+    private ReservationStatus status;
 
     @Column(name = "from_date")
     private LocalDateTime fromDate;
