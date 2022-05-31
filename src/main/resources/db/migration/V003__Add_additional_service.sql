@@ -1,4 +1,4 @@
-create table additional_service
+create table additional_services
 (
     id      bigserial PRIMARY KEY NOT NULL,
     name    varchar(255) UNIQUE   NOT NULL,
@@ -8,5 +8,5 @@ create table additional_service
     updated timestamp             NOT NULL
 );
 
-CREATE INDEX idx_additional_service_name ON additional_service (name);
+CREATE INDEX idx_additional_services_name ON additional_services (name);
 
