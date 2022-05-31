@@ -1,7 +1,7 @@
 CREATE TABLE employee
 (
     id                bigserial PRIMARY KEY NOT NULL,
-    type              varchar(255) NOT NULL;
+    type              varchar(255) NOT NULL,
     first_name        varchar(255) NOT NULL,
     last_name         varchar(255) NOT NULL,
     passport          varchar(255) UNIQUE NOT NULL,

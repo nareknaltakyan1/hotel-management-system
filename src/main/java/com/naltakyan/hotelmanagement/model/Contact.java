@@ -53,7 +53,7 @@ public class Contact implements Serializable {
   private String address3;
 
   @Size(max = 20)
-  @Column(name = "postalcode")
+  @Column(name = "postalCode")
   private String postalCode;
 
   @Column(length = 4000)
