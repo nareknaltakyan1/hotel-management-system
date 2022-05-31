@@ -1,34 +1,32 @@
 package com.naltakyan.hotelmanagement.model;
 
-import java.time.LocalDateTime;
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
+import javax.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Getter
 @Setter
-public class Room {
+public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private RoomType type;
+    private ReservationType type;
 
-    @Column(name = "bed_numbers")
-    private String bedNumbers;
+    @Column(name = "from_date")
+    private LocalDateTime fromDate;
 
-    private String area;
+    @Column(name = "to_date")
+    private LocalDateTime toDate;
 
-    @Column(name = "price_per_day")
-    private String pricePerDay;
-
+    private double price;
 }
