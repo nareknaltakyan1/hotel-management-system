@@ -36,7 +36,7 @@ public class GuestController {
     }
 
     @GetMapping(value = "/guests")
-    public String getContacts(Model model, Pageable pageable) {
+    public String getGuests(Model model, Pageable pageable) {
         List<Guest> guests = guestService.findAll(pageable);
 
         long count = guestService.count();
