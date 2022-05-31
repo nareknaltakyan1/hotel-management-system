@@ -24,5 +24,13 @@ public class Reservation extends TimeStampedDomainEntity {
   private LocalDateTime toDate;
 
   private double price;
-//  TODO add mappings
+
+  @ManyToOne
+  @JoinColumn(name = "guest_id", nullable = false)
+  private Guest guest;
+
+  @ManyToOne
+  @JoinColumn(name = "room_id", nullable = false)
+  private Room room;
+  //  TODO add mappings
 }

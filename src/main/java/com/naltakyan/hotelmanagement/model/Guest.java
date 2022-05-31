@@ -1,5 +1,6 @@
 package com.naltakyan.hotelmanagement.model;
 
+import java.util.Set;
 import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,4 +26,7 @@ public class Guest extends TimeStampedDomainEntity {
   private String phone;
 
   private String email;
+
+  @OneToMany(mappedBy = "guest")
+  private Set<Reservation> reservations;
 }

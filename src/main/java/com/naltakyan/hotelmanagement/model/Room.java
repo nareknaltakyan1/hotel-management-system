@@ -1,5 +1,6 @@
 package com.naltakyan.hotelmanagement.model;
 
+import java.util.Set;
 import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,4 +23,7 @@ public class Room extends TimeStampedDomainEntity {
 
   @Column(name = "price_per_day")
   private String pricePerDay;
+
+  @OneToMany(mappedBy = "room")
+  private Set<Reservation> reservations;
 }
