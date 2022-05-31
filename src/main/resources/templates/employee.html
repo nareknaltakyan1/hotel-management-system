@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>View Contact</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>View Contact</h1>
+<a th:href="@{/employees}">Back to Contact List</a>
+<br/><br/>
+<div th:if="${employee}">
+    <table border="0">
+        <tr>
+            <td>ID</td>
+            <td>:</td>
+            <td th:utext="${employee.id}">...</td>
+        </tr>
+        <tr>
+            <td>Role</td>
+            <td>:</td>
+            <td th:utext="${employee.role}">...</td>
+        </tr>
+        <tr>
+            <td>Passport</td>
+            <td>:</td>
+            <td th:utext="${employee.passport}">...</td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td>:</td>
+            <td th:utext="${employee.firstName}">...</td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td>:</td>
+            <td th:utext="${employee.lastName}">...</td>
+        </tr>
+        <tr>
+            <td>Profile Image Url</td>
+            <td>:</td>
+            <td th:utext="${employee.profileImageUrl}">...</td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>:</td>
+            <td th:utext="${employee.phone}">...</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>:</td>
+            <td th:utext="${employee.email}">...</td>
+        </tr>
+    </table>
+    <br/><br/>
+    <div th:if="not ${allowDelete}">
+        <a th:href="@{/employees/{employeeId}/edit(employeeId=${employee.id})}">Edit</a> |
+        <a th:href="@{/employees/{employeeId}/delete(employeeId=${employee.id})}">Delete</a>
+    </div>
+    <form th:if="${allowDelete}" th:action="@{/employees/{employeeId}/delete(employeeId=${employee.id})}" method="POST">
+        Delete this contact? <input type="submit" th:value="Yes" />
+    </form>
+</div>
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+</body>
+</html>
