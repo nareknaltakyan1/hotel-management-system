@@ -7,5 +7,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ReservationRepository
-        extends PagingAndSortingRepository<Reservation, Long>, JpaSpecificationExecutor<Reservation> {
-}
+    extends PagingAndSortingRepository<Reservation, Long>, JpaSpecificationExecutor<Reservation> {}
