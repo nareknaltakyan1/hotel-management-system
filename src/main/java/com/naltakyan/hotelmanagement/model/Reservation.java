@@ -24,4 +24,5 @@ public class Reservation extends TimeStampedDomainEntity {
   private LocalDateTime toDate;
 
   private double price;
+//  TODO add mappings
 }
