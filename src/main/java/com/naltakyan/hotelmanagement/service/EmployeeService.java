@@ -4,6 +4,8 @@ import static org.springframework.util.Assert.notNull;
 
 import com.naltakyan.hotelmanagement.model.Employee;
 import com.naltakyan.hotelmanagement.repository.EmployeeRepository;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
@@ -42,6 +44,8 @@ public class EmployeeService {
     if (employee.getId() != null && existsById(employee.getId())) {
       throw new EntityExistsException("Employee with id: " + employee.getId() + " already exists");
     }
+    employee.setCreated(LocalDateTime.now());
+    employee.setUpdated(LocalDateTime.now());
     return employeeRepository.save(employee);
   }
 
@@ -52,6 +56,8 @@ public class EmployeeService {
     if (!existsById(employee.getId())) {
       throw new EntityNotFoundException("Cannot find Employee with id: " + employee.getId());
     }
+    employee.setCreated(LocalDateTime.now());
+    employee.setUpdated(LocalDateTime.now());
     employeeRepository.save(employee);
   }
 

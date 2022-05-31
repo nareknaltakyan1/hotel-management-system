@@ -108,8 +108,6 @@ public class EmployeeController {
       employeeService.update(employee);
       return "redirect:/employees/" + String.valueOf(employee.getId());
     } catch (Exception ex) {
-      // log com.naltakyan.hotelmanagment.exception first,
-      // then show error
       String errorMessage = ex.getMessage();
       log.error(errorMessage);
       model.addAttribute("errorMessage", errorMessage);

@@ -29,7 +29,7 @@ public class GuestController {
         this.guestService = guestService;
     }
 
-    @GetMapping(value = {"/", "/guest-home"})
+    @GetMapping(value =  "/guest-home")
     public String index(Model model) {
         model.addAttribute("title", title);
         return "guest-home";
