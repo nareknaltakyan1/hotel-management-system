@@ -5,6 +5,8 @@ import com.naltakyan.hotelmanagement.repository.GuestRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import static org.springframework.util.Assert.notNull;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
@@ -31,6 +33,8 @@ public class GuestService {
 
     public List<Guest> findAll(final Pageable pageable) {return guestRepository.findAll(pageable).getContent();}
 
+
+    @Transactional
     public Guest save(Guest guest){
         notNull(guest,"Guest should be null");
         notNull(guest.getFirstName(),"Guest Name should be null");
@@ -40,6 +44,7 @@ public class GuestService {
         return guestRepository.save(guest);
     }
 
+    @Transactional
     public void update(Guest guest) {
         notNull(guest, "Guest should not be null");
         notNull(guest.getFirstName(), "Guest Name should not be null");
@@ -48,6 +53,7 @@ public class GuestService {
         }
         guestRepository.save(guest);
     }
+
 
     public void deleteById(Long id) {
         if (!existsById(id)) {
