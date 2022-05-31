@@ -13,4 +13,5 @@ CREATE TABLE reservation
     updated timestamp NOT NULL,
     CONSTRAINT fk_reservation_guest FOREIGN KEY (guest_id) REFERENCES guest (id),
     CONSTRAINT fk_reservation_romm  FOREIGN KEY (room_id) REFERENCES room (id)
+-- TODO fix name
 );
