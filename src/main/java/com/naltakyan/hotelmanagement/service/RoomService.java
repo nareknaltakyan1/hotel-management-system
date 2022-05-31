@@ -28,7 +28,7 @@ public class RoomService {
     public Room findById(Long id) {
         Room room = roomRepository.findByIdAndDeletedIsNull(id).orElse(null);
         if (room == null) {
-            throw new EntityNotFoundException("Cannot find Guest with id: " + id);
+            throw new EntityNotFoundException("Cannot find Room with id: " + id);
         }
         return room;
     }
@@ -44,7 +44,7 @@ public class RoomService {
         notNull(room.getBedNumbers(), "Room BedNumber should not be null");
         notNull(room.getPricePerDay(), "Room PricePerDay should not be null");
         if (room.getId() != null && existsById(room.getId())) {
-            throw new EntityExistsException("Room with id: " + room.getId() + " already exists");
+            throw new EntityExistsException("Cannot find Room id: " + room.getId() + " already exists");
         }
         return roomRepository.save(room);
     }
@@ -56,7 +56,7 @@ public class RoomService {
         notNull(room.getBedNumbers(), "Room BedNumber should not be null");
         notNull(room.getPricePerDay(), "Room PricePerDay should not be null");
         if (!existsById(room.getId())) {
-            throw new EntityNotFoundException("Room find with id: " + room.getId());
+            throw new EntityNotFoundException("Cannot find Room: " + room.getId());
         }
         roomRepository.save(room);
     }
