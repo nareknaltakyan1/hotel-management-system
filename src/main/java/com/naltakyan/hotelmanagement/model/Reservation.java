@@ -13,11 +13,7 @@ import java.time.LocalDateTime;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Getter
 @Setter
-public class Reservation {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Reservation extends TimeStampedDomainEntity{
 
     @Enumerated(EnumType.STRING)
     private ReservationType type;

@@ -14,11 +14,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Getter
 @Setter
-public class Room {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Room extends TimeStampedDomainEntity {
 
     @Enumerated(EnumType.STRING)
     private RoomType type;

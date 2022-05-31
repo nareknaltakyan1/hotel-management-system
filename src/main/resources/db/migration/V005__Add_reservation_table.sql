@@ -8,6 +8,9 @@ CREATE TABLE reservation
     status_id bigserial NOT NULL,
     guest_id  bigserial NOT NULL,
     price double precision NOT NULL,
-    CONSTRAINT FK_56 FOREIGN KEY (guest_id) REFERENCES guest (id),
-    CONSTRAINT FK_80 FOREIGN KEY (room_id) REFERENCES room (id)
+    created timestamp NOT NULL,
+    deleted timestamp,
+    updated timestamp NOT NULL,
+    CONSTRAINT Guest FOREIGN KEY (guest_id) REFERENCES guest (id),
+    CONSTRAINT Room FOREIGN KEY (room_id) REFERENCES room (id)
 );
