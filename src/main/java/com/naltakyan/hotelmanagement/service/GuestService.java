@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.util.Assert.notNull;
+
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -23,7 +25,7 @@ public class GuestService {
     }
 
     public Guest findById(Long id) {
-        Guest guest = guestRepository.findById(id).orElse(null);
+        Guest guest = guestRepository.findByIdAndDeletedIsNull(id).orElse(null);
         if (guest == null) {
             throw new EntityNotFoundException("Cannot find Guest with id: " + id);
         } else {
@@ -31,17 +33,19 @@ public class GuestService {
         }
     }
 
-    public List<Guest> findAll(final Pageable pageable) {return guestRepository.findAll(pageable).getContent();}
+    public List<Guest> findAll(final Pageable pageable) {
+        return guestRepository.getGuestByDeletedIsNull(pageable).getContent();
+    }
 
 
     @Transactional
-    public Guest save(Guest guest){
-        notNull(guest,"Guest should be null");
-        notNull(guest.getFirstName(),"Guest Name should be null");
-        notNull(guest.getPassport(),"Guest Passport should be null");
-        notNull(guest.getPhone(),"Guest Phone should be null");
-        notNull(guest.getEmail(),"Guest Email should be null");
-        if(guest.getId()!= null && existsById(guest.getId())){
+    public Guest save(Guest guest) {
+        notNull(guest, "Guest should be null");
+        notNull(guest.getFirstName(), "Guest Name should be null");
+        notNull(guest.getPassport(), "Guest Passport should be null");
+        notNull(guest.getPhone(), "Guest Phone should be null");
+        notNull(guest.getEmail(), "Guest Email should be null");
+        if (guest.getId() != null && existsById(guest.getId())) {
             throw new EntityExistsException("Guest with id: " + guest.getId() + " already exists");
         }
         return guestRepository.save(guest);
@@ -51,9 +55,10 @@ public class GuestService {
     public void update(Guest guest) {
         notNull(guest, "Guest should not be null");
         notNull(guest.getFirstName(), "Guest Name should not be null");
-        notNull(guest.getPassport(),"Guest Passport should be null");
-        notNull(guest.getPhone(),"Guest Phone should be null");
-        notNull(guest.getEmail(),"Guest Email should be null");        if (!existsById(guest.getId())) {
+        notNull(guest.getPassport(), "Guest Passport should be null");
+        notNull(guest.getPhone(), "Guest Phone should be null");
+        notNull(guest.getEmail(), "Guest Email should be null");
+        if (!existsById(guest.getId())) {
             throw new EntityNotFoundException("Cannot find Contact with id: " + guest.getId());
         }
         guestRepository.save(guest);
@@ -61,10 +66,9 @@ public class GuestService {
 
 
     public void deleteById(Long id) {
-        if (!existsById(id)) {
-            throw new EntityNotFoundException("Cannot find guest with id: " + id);
-        }
-        guestRepository.deleteById(id);
+        var guest = findById(id);
+        guest.setDeleted(LocalDateTime.now());
+        guestRepository.save(guest);
     }
 
     public Long count() {
