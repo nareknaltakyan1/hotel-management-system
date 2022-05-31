@@ -34,7 +34,7 @@ public class GuestService {
     }
 
     public List<Guest> findAll(final Pageable pageable) {
-        return guestRepository.getGuestByDeletedIsNull(pageable).getContent();
+        return guestRepository.getGuestsByDeletedIsNull(pageable).getContent();
     }
 
 

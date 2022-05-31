@@ -12,5 +12,5 @@ import java.util.Optional;
 public interface GuestRepository extends JpaRepository<Guest, Long> {
     Optional<Guest> findByIdAndDeletedIsNull(Long id);
 
-    Page<Guest> getGuestByDeletedIsNull(Pageable pageable);
+    Page<Guest> getGuestsByDeletedIsNull(Pageable pageable);
 }
