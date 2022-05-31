@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.springframework.util.Assert.notNull;
@@ -40,7 +41,6 @@ public class RoomService {
         notNull(room.getType(), "Room Type should not be null");
         notNull(room.getBedNumbers(), "Room BedNumber should not be null");
         notNull(room.getPricePerDay(), "Room PricePerDay should not be null");
-
         if (room.getId() != null && existsById(room.getId())) {
             throw new EntityExistsException("Room with id: " + room.getId() + " already exists");
         }
@@ -59,11 +59,11 @@ public class RoomService {
         roomRepository.save(room);
     }
 
+    @Transactional
     public void deleteById(Long id) {
-        if (!existsById(id)) {
-            throw new EntityNotFoundException("Room find with id: " + id);
-        }
-        roomRepository.deleteById(id);
+        var room = findById(id);
+        room.setDeleted(LocalDateTime.now());
+        roomRepository.save(room);
     }
 
     public Long count() {
