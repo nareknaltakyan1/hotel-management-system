@@ -28,9 +28,8 @@ public class GuestService {
         Guest guest = guestRepository.findByIdAndDeletedIsNull(id).orElse(null);
         if (guest == null) {
             throw new EntityNotFoundException("Cannot find Guest with id: " + id);
-        } else {
-            return guest;
         }
+        return guest;
     }
 
     public List<Guest> findAll(final Pageable pageable) {
