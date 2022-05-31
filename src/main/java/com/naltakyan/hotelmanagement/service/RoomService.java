@@ -1,11 +1,11 @@
 package com.naltakyan.hotelmanagement.service;
 
-import com.naltakyan.hotelmanagement.model.Employee;
 import com.naltakyan.hotelmanagement.model.Room;
 import com.naltakyan.hotelmanagement.repository.RoomRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
@@ -34,17 +34,20 @@ public class RoomService {
         return roomRepository.findAll(pageable).getContent();
     }
 
+    @Transactional
     public Room save(Room room) {
         notNull(room, "Room should not be null");
         notNull(room.getType(), "Room Type should not be null");
         notNull(room.getBedNumbers(), "Room BedNumber should not be null");
         notNull(room.getPricePerDay(), "Room PricePerDay should not be null");
+
         if (room.getId() != null && existsById(room.getId())) {
             throw new EntityExistsException("Room with id: " + room.getId() + " already exists");
         }
         return roomRepository.save(room);
     }
 
+    @Transactional
     public void update(Room room) {
         notNull(room, "Room should not be null");
         notNull(room.getType(), "Room Type should not be null");
