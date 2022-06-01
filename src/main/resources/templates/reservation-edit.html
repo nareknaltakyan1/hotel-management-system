@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="${add} ? 'Create a Reservation' : 'Edit a Reservation'" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1 th:text="${add} ? 'Create a Reservation:' : 'Edit a Reservation:'" />
+<a th:href="@{/reservations}">Back to Reservation List</a>
+<br/><br/>
+<form th:action="${add} ? @{/reservations/add} : @{/reservations/{reservationId}/edit(reservationId=${reservation.id})}"
+      th:object="${reservation}" method="POST">
+    <table border="0">
+        <tr th:if="${reservation.id}">
+            <td>ID</td>
+            <td>:</td>
+            <td th:utext="${reservation.id}">...</td>
+        </tr>
+        <tr>
+            <td>status</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{status}" /></td>
+        </tr>
+        <tr>
+            <td>fromDate</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{fromDate}" /></td>
+        </tr>
+        <tr>
+            <td>toDate</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{toDate}" /></td>
+        </tr>
+        <tr>
+            <td>price</td>
+            <td>:</td>
+            <td><input type="number" th:field="*{price}"  /></td>
+        </tr>
+        <tr>
+            <td>guest_id</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{guest_id}"  /></td>
+        </tr>
+        <tr>
+            <td>room_id</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{room_id}" size="50" /></td>
+        </tr>
+    </table>
+    <input type="submit" th:value="${add} ? 'Create' : 'Update'" />
+</form>
+
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+</body>
+</html>

@@ -5,7 +5,6 @@ CREATE TABLE reservation
     to_date   timestamp,
     status varchar(255) NOT NULL,
     room_id   bigserial NOT NULL,
-    status_id bigserial NOT NULL,
     guest_id  bigserial NOT NULL,
     price double precision NOT NULL,
     created timestamp NOT NULL,

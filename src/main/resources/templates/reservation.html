@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>View Reservation</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>View Contact</h1>
+<a th:href="@{/reservations}">Back to Reservation List</a>
+<br/><br/>
+<div th:if="${reservation}">
+    <table border="0">
+        <tr>
+            <td>ID</td>
+            <td>:</td>
+            <td th:utext="${reservation.id}">...</td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td>:</td>
+            <td th:utext="${reservation.status}">...</td>
+        </tr>
+        <tr>
+            <td>fromDate</td>
+            <td>:</td>
+            <td th:utext="${reservation.fromDate}">...</td>
+        </tr>
+        <tr>
+            <td>toDate</td>
+            <td>:</td>
+            <td th:utext="${reservation.toDate}">...</td>
+        </tr>
+        <tr>
+            <td>price</td>
+            <td>:</td>
+            <td th:utext="${reservation.price}">...</td>
+        </tr>
+        <tr>
+            <td>guest_id</td>
+            <td>:</td>
+            <td th:utext="${reservation.guest_id}">...</td>
+        </tr>
+        <tr>
+            <td>room_id</td>
+            <td>:</td>
+            <td th:utext="${reservation.room_id}">...</td>
+        </tr>
+    </table>
+    <br/><br/>
+    <div th:if="not ${allowDelete}">
+        <a th:href="@{/reservations/{reservationId}/edit(reservationId=${reservation.id})}">Edit</a> |
+        <a th:href="@{/reservations/{reservationId}/delete(reservationId=${reservation.id})}">Delete</a>
+    </div>
+    <form th:if="${allowDelete}" th:action="@{/reservations/{reservationId}/delete(reservationId=${reservation.id})}" method="POST">
+        Delete this contact? <input type="submit" th:value="Yes" />
+    </form>
+</div>
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+</body>
+</html>

@@ -26,7 +26,4 @@ public class Guest extends TimeStampedDomainEntity {
   private String phone;
 
   private String email;
-
-  @OneToMany(mappedBy = "guest")
-  private Set<Reservation> reservations;
 }

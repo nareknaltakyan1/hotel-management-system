@@ -25,11 +25,7 @@ public class Reservation extends TimeStampedDomainEntity {
 
   private double price;
 
-  @ManyToOne
-  @JoinColumn(name = "guest_id", nullable = false)
-  private Guest guest;
+  private Long guest_id;
 
-  @ManyToOne
-  @JoinColumn(name = "room_id", nullable = false)
-  private Room room;
+  private Long room_id;
 }
