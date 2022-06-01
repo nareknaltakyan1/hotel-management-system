@@ -10,8 +10,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Getter
 @Setter
-@Table(name = "additional_services")
-public class AdditionalServices extends TimeStampedDomainEntity {
+@Table(name = "additional_service")
+public class AdditionalService extends TimeStampedDomainEntity {
 
   @Column(nullable = false, length = 255)
   private String name;

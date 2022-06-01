@@ -2,7 +2,7 @@ package com.naltakyan.hotelmanagement.service;
 
 import static org.springframework.util.Assert.notNull;
 
-import com.naltakyan.hotelmanagement.model.AdditionalServices;
+import com.naltakyan.hotelmanagement.model.AdditionalService;
 import com.naltakyan.hotelmanagement.repository.AdditionalServicesRepository;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,39 +23,43 @@ public class AdditionalServicesService {
     return additionalServicesRepository.existsById(id);
   }
 
-  public AdditionalServices findById(Long id) {
-    AdditionalServices additionalServices =
+  public AdditionalService findById(Long id) {
+    AdditionalService additionalService =
         additionalServicesRepository.findByIdAndDeletedIsNull(id).orElse(null);
-    if (additionalServices == null) {
+    if (additionalService == null) {
       throw new EntityNotFoundException("Cannot find Additional Service with id: " + id);
     }
-    return additionalServices;
+    return additionalService;
   }
 
-  public List<AdditionalServices> findAll(final Pageable pageable) {
+  public List<AdditionalService> findAll(final Pageable pageable) {
     return additionalServicesRepository.getAdditionalServicesByDeletedIsNull(pageable).getContent();
   }
 
-  public AdditionalServices save(AdditionalServices additionalServices) {
-    notNull(additionalServices, "Additional Service should not be null");
-    notNull(additionalServices.getName(), "Additional Service Name should not be null");
-    notNull(additionalServices.getPrice(), "Additional Service Price should not be null");
-    if (additionalServices.getId() != null && existsById(additionalServices.getId())) {
+  public AdditionalService save(AdditionalService additionalService) {
+    notNull(additionalService, "Additional Service should not be null");
+    notNull(additionalService.getName(), "Additional Service Name should not be null");
+    notNull(additionalService.getPrice(), "Additional Service Price should not be null");
+    if (additionalService.getId() != null && existsById(additionalService.getId())) {
       throw new EntityExistsException(
-          "AdditionalService with id: " + additionalServices.getId() + " already exists");
+          "AdditionalService with id: " + additionalService.getId() + " already exists");
     }
-    return additionalServicesRepository.save(additionalServices);
+    additionalService.setCreated(LocalDateTime.now());
+    additionalService.setUpdated(LocalDateTime.now());
+    return additionalServicesRepository.save(additionalService);
   }
 
-  public void update(AdditionalServices additionalServices) {
-    notNull(additionalServices, "AdditionalService should not be null");
-    notNull(additionalServices.getName(), "AdditionalService Name should not be null");
-    notNull(additionalServices.getPrice(), "Additional Service Price should not be null");
-    if (!existsById(additionalServices.getId())) {
+  public void update(AdditionalService additionalService) {
+    notNull(additionalService, "AdditionalService should not be null");
+    notNull(additionalService.getName(), "AdditionalService Name should not be null");
+    notNull(additionalService.getPrice(), "Additional Service Price should not be null");
+    if (!existsById(additionalService.getId())) {
       throw new EntityNotFoundException(
-          "Cannot find Additional Service with id: " + additionalServices.getId());
+          "Cannot find Additional Service with id: " + additionalService.getId());
     }
-    additionalServicesRepository.save(additionalServices);
+    additionalService.setCreated(LocalDateTime.now());
+    additionalService.setUpdated(LocalDateTime.now());
+    additionalServicesRepository.save(additionalService);
   }
 
   @Transactional

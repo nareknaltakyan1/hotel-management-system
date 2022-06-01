@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="${add} ? 'Create a AdditionalService' : 'Edit a AdditionalService'" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1 th:text="${add} ? 'Create a AdditionalService:' : 'Edit a AdditionalService:'" />
+<a th:href="@{/additional-services}">Back to AdditionalService List</a>
+<br/><br/>
+<form th:action="${add} ? @{/additional-services/add} : @{/additional-services/{additionalServiceId}/edit(additionalServiceId=${additionalService.id})}"
+      th:object="${additionalService}" method="POST">
+    <table border="0">
+        <tr th:if="${additionalService.id}">
+            <td>ID</td>
+            <td>:</td>
+            <td th:utext="${additionalService.id}">...</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{name}" /></td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{price}" /></td>
+        </tr>
+    </table>
+    <input type="submit" th:value="${add} ? 'Create' : 'Update'" />
+</form>
+
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+</body>
+</html>

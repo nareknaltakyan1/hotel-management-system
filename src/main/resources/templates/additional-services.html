@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>View Additional Service</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>View Additional Services</h1>
+<a th:href="@{/additional-services}">Back to Additional Services List</a>
+<br/><br/>
+<div th:if="${additionalService}">
+  <table border="0">
+    <tr>
+      <td>ID</td>
+      <td>:</td>
+      <td th:utext="${additionalService.id}">...</td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td>:</td>
+      <td th:utext="${additionalService.name}">...</td>
+    </tr>
+    <tr>
+      <td>Price</td>
+      <td>:</td>
+      <td th:utext="${additionalService.price}">...</td>
+    </tr>
+  </table>
+  <br/><br/>
+  <div th:if="not ${allowDelete}">
+    <a th:href="@{/additional-services/{additionalServiceId}/edit(additionalServiceId=${additionalService.id})}">Edit</a> |
+    <a th:href="@{/additional-services/{additionalServiceId}/delete(additionalServiceId=${additionalService.id})}">Delete</a>
+  </div>
+  <form th:if="${allowDelete}" th:action="@{/additional-services/{additionalServiceId}/delete(additionalServiceId=${additionalService.id})}" method="POST">
+    Delete this contact? <input type="submit" th:value="Yes" />
+  </form>
+</div>
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+</body>
+</html>
