@@ -25,22 +25,17 @@
         <tr>
             <td>BedNumber</td>
             <td>:</td>
-            <td><input type="text" th:field="*{bedNumbers}" /></td>
+            <td><input type="number" th:field="*{bedNumbers}" /></td>
         </tr>
         <tr>
             <td>Area</td>
             <td>:</td>
-            <td><input type="text" th:field="*{area}" /></td>
+            <td><input type="number" th:field="*{area}" /></td>
         </tr>
         <tr>
             <td>PricePerDay</td>
             <td>:</td>
-            <td><input type="text" th:field="*{pricePerDay}" size="50" /></td>
-        </tr>
-        <tr>
-            <td>Reservations</td>
-            <td>:</td>
-            <td><input type="text" th:field="*{reservations}" /></td>
+            <td><input type="number" th:field="*{pricePerDay}" /></td>
         </tr>
     </table>
     <input type="submit" th:value="${add} ? 'Create' : 'Update'" />

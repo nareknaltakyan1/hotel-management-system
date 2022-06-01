@@ -23,16 +23,14 @@
             <th>BedNumber</th>
             <th>Area</th>
             <th>PricePerDay</th>
-            <th>Reservations</th>
             <th>Edit</th>
         </tr>
         <tr th:each ="room : ${rooms}">
-            <td><a th:href="@{/rooms/{roomId}(roomId=${room.id})}" th:utext="${room.id}">...</a></td>
-            <td><a th:href="@{/rooms/{roomId}(roomId=${room.id})}" th:utext="${room.type}">...</a></td>
+            <td th:utext="${room.id}">...</td>
+            <td th:utext="${room.type}">...</td>
             <td th:utext="${room.bedNumbers}">...</td>
             <td th:utext="${room.area}">...</td>
             <td th:utext="${room.pricePerDay}">...</td>
-            <td th:utext="${room.reservations}">...</td>
             <td><a th:href="@{/rooms/{roomId}/edit(roomId=${room.id})}">Edit</a></td>
         </tr>
     </table>

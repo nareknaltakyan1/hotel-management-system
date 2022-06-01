@@ -58,7 +58,7 @@ public class RoomController {
         } catch (EntityNotFoundException ex) {
             model.addAttribute("errorMessage", "Room not found");
         }
-        model.addAttribute("Room", room);
+        model.addAttribute("room", room);
         return "room";
     }
 
@@ -100,7 +100,7 @@ public class RoomController {
 
     @PostMapping(value = {"/rooms/{roomId}/edit"})
     public String updateRoom(
-            Model model, @PathVariable long roomId, @ModelAttribute("contact") Room room) {
+            Model model, @PathVariable long roomId, @ModelAttribute("room") Room room) {
         try {
             room.setId(roomId);
             roomService.update(room);

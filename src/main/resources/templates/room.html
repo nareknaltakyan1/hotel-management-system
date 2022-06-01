@@ -36,11 +36,6 @@
             <td>:</td>
             <td th:utext="${room.pricePerDay}">...</td>
         </tr>
-        <tr>
-            <td>Reservations</td>
-            <td>:</td>
-            <td th:utext="${room.reservations}">...</td>
-        </tr>
     </table>
     <br/><br/>
     <div th:if="not ${allowDelete}">

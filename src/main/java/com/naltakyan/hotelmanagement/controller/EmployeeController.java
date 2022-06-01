@@ -75,13 +75,9 @@ public class EmployeeController {
       Employee newEmployee = employeeService.save(employee);
       return "redirect:/employees/" + String.valueOf(newEmployee.getId());
     } catch (Exception ex) {
-      // log com.naltakyan.hotelmanagment.exception first,
-      // then show error
       String errorMessage = ex.getMessage();
       log.error(errorMessage);
       model.addAttribute("errorMessage", errorMessage);
-
-      // com.naltakyan.hotelmanagment.model.addAttribute("employee", employee);
       model.addAttribute("add", true);
       return "employee-edit";
     }

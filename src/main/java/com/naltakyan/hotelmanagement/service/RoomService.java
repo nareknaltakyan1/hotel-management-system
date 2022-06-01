@@ -44,6 +44,8 @@ public class RoomService {
     if (room.getId() != null && existsById(room.getId())) {
       throw new EntityExistsException("Cannot find Room id: " + room.getId() + " already exists");
     }
+    room.setCreated(LocalDateTime.now());
+    room.setUpdated(LocalDateTime.now());
     return roomRepository.save(room);
   }
 
@@ -56,6 +58,8 @@ public class RoomService {
     if (!existsById(room.getId())) {
       throw new EntityNotFoundException("Cannot find Room: " + room.getId());
     }
+    room.setCreated(LocalDateTime.now());
+    room.setUpdated(LocalDateTime.now());
     roomRepository.save(room);
   }
 

@@ -17,12 +17,12 @@ public class Room extends TimeStampedDomainEntity {
   private RoomType type;
 
   @Column(name = "bed_numbers")
-  private String bedNumbers;
+  private Long bedNumbers;
 
   private double area;
 
   @Column(name = "price_per_day")
-  private String pricePerDay;
+  private Double pricePerDay;
 
   @OneToMany(mappedBy = "room")
   private Set<Reservation> reservations;
